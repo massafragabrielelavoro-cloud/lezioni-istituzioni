@@ -4,7 +4,7 @@ import graphviz
 # Configurazione della pagina
 st.set_page_config(page_title="Mappa Istituzioni", page_icon="🇮🇹", layout="wide")
 
-st.title("🇮🇹 Il Sistema Istituzionale Italiano")
+st.title("Il Sistema Istituzionale Italiano")
 st.markdown("Esplora la mappa concettuale per comprendere l'equilibrio dei poteri, poi apri i moduli sottostanti per approfondire ogni singolo blocco logico.")
 
 # --- LA MAPPA CONCETTUALE VISIVA ---
