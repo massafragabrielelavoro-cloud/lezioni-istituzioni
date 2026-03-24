@@ -1,3 +1,40 @@
+import streamlit as st
+import graphviz
+
+# Configurazione della pagina
+st.set_page_config(page_title="Mappa Istituzioni", page_icon="🇮🇹", layout="wide")
+
+st.title("🇮🇹 Il Sistema Istituzionale Italiano")
+st.markdown("Esplora la mappa concettuale per comprendere l'equilibrio dei poteri, poi apri i moduli sottostanti per approfondire ogni singolo blocco logico.")
+
+# --- LA MAPPA CONCETTUALE VISIVA ---
+st.subheader("📌 Mappa delle Relazioni e dei Poteri")
+
+mappa = graphviz.Digraph(engine='dot')
+mappa.attr(rankdir='TB', size='8,8')
+
+mappa.node('Costituzione', 'Costituzione Italiana\n(Legge Fondamentale 1948)', shape='box', style='filled', fillcolor='lightblue')
+mappa.node('Popolo', 'Cittadini Elettori\n(Sovranità e Democrazia Diretta)', shape='ellipse', style='filled', fillcolor='lightgrey')
+mappa.node('Parlamento', 'Parlamento\n(Potere Legislativo)', shape='box', style='filled', fillcolor='lightgreen')
+mappa.node('PdR', 'Presidente della Repubblica\n(Garante e Arbitro)', shape='ellipse', style='filled', fillcolor='gold')
+mappa.node('Governo', 'Governo\n(Potere Esecutivo)', shape='box', style='filled', fillcolor='lightcoral')
+mappa.node('Magistratura', 'Magistratura\n(Potere Giudiziario)', shape='box', style='filled', fillcolor='plum')
+mappa.node('Consulta', 'Corte Costituzionale\n(Giudice delle Leggi)', shape='ellipse', style='filled', fillcolor='wheat')
+
+mappa.edge('Costituzione', 'PdR', label=' Definisce i poteri')
+mappa.edge('Costituzione', 'Consulta', label=' Difesa da')
+mappa.edge('Popolo', 'Parlamento', label=' Elegge direttamente')
+mappa.edge('Popolo', 'Costituzione', label=' Referendum Abrogativo', style='dashed')
+mappa.edge('Parlamento', 'PdR', label=' Elegge (in seduta comune)')
+mappa.edge('Parlamento', 'Governo', label=' Vota la FIDUCIA (Vitale!)', color='red', penwidth='2.0')
+mappa.edge('PdR', 'Governo', label=' Nomina il Premier')
+mappa.edge('PdR', 'Parlamento', label=' Può sciogliere le Camere')
+mappa.edge('Governo', 'Parlamento', label=' Decreti Legge (da convertire)')
+
+st.graphviz_chart(mappa, use_container_width=True)
+
+st.markdown("---")
+
 # --- I MODULI DI LEZIONE (Ora completi al 100% per il quiz) ---
 st.subheader("📚 Moduli di Studio (Clicca per espandere)")
 
@@ -48,3 +85,5 @@ with st.expander("6️⃣ Enti Locali e Democrazia Diretta"):
     * **Referendum:** Strumento per cancellare una legge (**abrogativo**). Non esiste quello per proporre nuove leggi (**No**). Servono **500000** firme o **5** consigli regionali. È valido solo se si raggiunge la soglia minima di votanti (il **quorum**).
     * **Modifiche:** La Costituzione si cambia solo con legge **costituzionale** approvata a maggioranza **assoluta**.
     """)
+
+st.success("✅ **Finito di ripassare? Sei pronto per il test!**")
